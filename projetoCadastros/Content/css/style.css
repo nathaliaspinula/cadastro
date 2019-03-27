@@ -1,0 +1,44 @@
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: #085e71;
+    color: #e8f4f7;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;     
+}
+
+.container .description .input-group input[type="text"],
+.container .description .input-group input[type="number"] {
+    font-family: "Roboto", Arial;
+    font-size: 16px;
+    color:#32c4ba;
+    width: 100%;
+    outline: none;
+    padding: 15px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    transition: all 0.1s ease;
+}
+
+.container .description input[type="submit"] {
+    background: #32c4ba;
+    border: none;
+    color: #070707;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Roboto", Arial;
+    font-size: 16px;
+    padding: 15px;
+    width: 100%;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }

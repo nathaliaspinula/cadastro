@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Cadastro";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Cadastro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="/content/css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">
+                <h2>Cadastre seus dados!</h2>
+            </div>
+            <div class="description">
+                <form id="cadastro" action="@Url.Action("Index", "Cadastro")" method="POST">
+                    <div class="input-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" maxlength="100" id="nome" name="nome">
+                    </div>
+                    <div class="input-group">
+                    <label for="telefone">Telefone:</label>
+                        <input type="number" max="11" id="telefone" name="telefone">  
+                    </div>
+                    <div class="input-group">
+                    <label for="cep">CEP:</label>
+                        <input type="number" max="8" id="cep" name="cep"> 
+                    </div>
+                    <div class="input-group">
+                        <label for="logradouro">Logradouro:</label>
+                        <input type="text" maxlength="150" id="logradouro" name="logradouro">
+                    </div>
+                    <div class="input-group">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" maxlength="20" id="complemento" name="complemento">
+                    </div>
+                    <div class="input-group">
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" maxlength="8" id="bairro" name="bairro">
+                    </div>
+                    <div class="input-group">
+                        <label for="localidade">Localidade:</label>
+                        <input type="text" maxlength="8" id="localidade" name="localidade">
+                    </div>
+                    <div class="input-group">
+                        <label for="uf">UF:</label>
+                        <input type="text" maxlength="8" id="uf" name="uf">
+                    </div>
+                    <input type="submit" name="btn-submit" value="Salvar"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
