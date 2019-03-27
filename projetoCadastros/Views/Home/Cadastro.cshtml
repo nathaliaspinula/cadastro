@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Cadastro";
+
 }
 
 <!DOCTYPE html>
@@ -10,8 +11,8 @@
         <title>Cadastro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="/content/css/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-        <script src="main.js"></script>
     </head>
     <body>
         <div class="container">
@@ -26,11 +27,11 @@
                     </div>
                     <div class="input-group">
                     <label for="telefone">Telefone:</label>
-                        <input type="number" max="11" id="telefone" name="telefone">  
+                        <input type="number" maxlength="11" id="telefone" name="telefone">  
                     </div>
                     <div class="input-group">
                     <label for="cep">CEP:</label>
-                        <input type="number" max="8" id="cep" name="cep"> 
+                        <input type="text" maxlength="8" id="cep" name="cep"> 
                     </div>
                     <div class="input-group">
                         <label for="logradouro">Logradouro:</label>
@@ -58,3 +59,24 @@
         </div>
     </body>
 </html>
+<script>
+
+    $('#cep').keyup(function () {
+        var cep = $("#cep").val();
+        console.log(cep);
+        if (cep.length == 8) {
+            $.ajax({
+                url: '@Url.Action("BuscaCep","Cadastro")',
+                dataType: "json",
+                data: {
+                    cep
+                },
+                success: {
+                    
+                }
+
+            });
+        }
+    });
+
+</script>
