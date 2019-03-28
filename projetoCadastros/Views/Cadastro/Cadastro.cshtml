@@ -17,20 +17,20 @@
     <body>
         <div class="container">
             <div class="title">
-                <h2>Cadastre seus dados!</h2>
+                <h2>Cadastrar</h2>
             </div>
             <div class="description">
-                <form id="cadastro" action="@Url.Action("Index", "Cadastro")" method="POST">
+                <form id="cadastro" action='@Url.Action("SalvarCadastros","Cadastro")' method="POST">
                     <div class="input-group">
                         <label for="nome">Nome:</label>
                         <input type="text" maxlength="100" id="nome" name="nome">
                     </div>
                     <div class="input-group">
-                    <label for="telefone">Telefone:</label>
-                        <input type="number" maxlength="11" id="telefone" name="telefone">  
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" maxlength="11" id="telefone" name="telefone">  
                     </div>
                     <div class="input-group">
-                    <label for="cep">CEP:</label>
+                        <label for="cep">CEP:</label>
                         <input type="text" maxlength="8" id="cep" name="cep"> 
                     </div>
                     <div class="input-group">
@@ -60,7 +60,7 @@
     </body>
 </html>
 <script>
-
+    var form = $('#cadastro').serialize();
     $('#cep').keyup(function () {
         var cep = $("#cep").val();
         console.log(cep);
@@ -68,13 +68,23 @@
             $.ajax({
                 url: '@Url.Action("BuscaCep","Cadastro")',
                 dataType: "json",
-                data: {
-                    cep
+                data: { cep },
+                error: function () {
+                    alert("erro");
                 },
-                success: {
-                    
+                success: function (endereco) {
+                    $("#cep").val(endereco.cep);
+                    $("#logradouro").val(endereco.logradouro);
+                    $("#logradouro").attr("readonly",true);
+                    $("#bairro").val(endereco.bairro);
+                    $("#bairro").attr("readonly", true);
+                    $("#cidade").val(endereco.cidade);
+                    $("#cidade").attr("readonly", true);
+                    $("#localidade").val(endereco.localidade);
+                    $("#localidade").attr("readonly", true);
+                    $("#uf").val(endereco.uf);
+                    $("#uf").attr("readonly", true);
                 }
-
             });
         }
     });

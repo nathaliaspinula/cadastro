@@ -13,9 +13,7 @@ namespace projetoCadastros.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Controller = "Home";
-            ViewBag.Action = "Index";
-            return View("Cadastro");
+            return View("Index");
         }
 
     }

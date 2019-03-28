@@ -16,7 +16,7 @@ body {
 }
 
 .container .description .input-group input[type="text"],
-.container .description .input-group input[type="number"] {
+.container .description .input-group input[type="tel"] {
     font-family: "Roboto", Arial;
     font-size: 16px;
     color:#32c4ba;
