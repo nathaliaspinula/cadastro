@@ -95,7 +95,7 @@ li a.active {
 }
 
 .title {
-  color: #B2174D;
+  color: #white;
   text-align: center;
   font-size: 30px;
   line-height: 28px;
@@ -103,7 +103,7 @@ li a.active {
 }
 
 .titles {
-  color: #b2174d;
+  color: #white;
 }
 
 .circle {

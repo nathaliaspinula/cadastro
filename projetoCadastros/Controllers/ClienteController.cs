@@ -72,7 +72,7 @@ namespace projetoCadastros.Controllers
 
             var clientes = cliente.ListarClientes();
 
-            var clienteAlterar = clientes.Where(c => c.Id == codCliente).First();
+            var clienteAlterar = clientes.Where(c => c.Id == codCliente).ToList();
 
             return View("Editar",clienteAlterar);
         }

@@ -6,61 +6,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cadastro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/content/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <title>Editar</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="@Url.Action("IndexClientes","Cliente")">Usuarios</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Cliente")">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <div class="title">
             <h2>Cadastrar</h2>
         </div>
         <div class="description">
-            <form id="frmCliente" action='/Cliente/Editar' method="POST">
-                <div class="input-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" maxlength="100" id="nome" name="nome" value="@cliente.Nome">
-                </div>
-                <div class="input-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" maxlength="11" id="telefone" name="telefone" value="@cliente.Telefone">
-                </div>
-                <div class="input-group">
-                    <label for="cep">CEP:</label>
-                    <input maxlength="8" placeholder="Cep" type="text" name="Cep_1" id="Cep" value="@cliente.Cep">
-                </div>
-                <div class="input-group">
-                    <label for="logradouro">Logradouro:</label>
-                    <input type="text" maxlength="150" placeholder="Logradouro" name="Logradouro_1" id="Logradouro" value="@cliente.Logradouro">
-                </div>
-                <div class="input-group">
-                    <label for="complemento">Complemento:</label>
-                    <input type="text" maxlength="20" placeholder="Complemento" name="Complemento_1" id="Complemento" value="@cliente.Complemento">
-                </div>
-                <div class="input-group">
-                    <label for="bairro">Bairro:</label>
-                    <input type="text" maxlength="8" placeholder="Bairro" name="Bairro_1" id="Bairro" value="@cliente.Bairro">
-                </div>
-                <div class="input-group">
-                    <label for="localidade">Cidade:</label>
-                    <input type="text" maxlength="8" placeholder="Cidade" name="Cidade_1" id="Cidade" value="@cliente.Cidade">
-                </div>
-                <div class="input-group">
-                    <label for="uf">UF:</label>
-                    <input type="text" maxlength="8" placeholder="UF" name="UF_1" id="UF" value="@cliente.Uf">
-                </div>
-                <input type="submit" name="btn-submit" value="Salvar" />
-            </form>
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var cliente in Model)
+                {
+                    <form id="frmCliente" action='/Cliente/Editar' method="POST">
+                        <div class="input-group">
+                            <label for="Id">ID:</label>
+                            <input type="text" maxlength="100" id="Id" name="Id" value="@cliente.Id">
+                        </div>
+                        <div class="input-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" maxlength="100" id="nome" name="nome" value="@cliente.Nome">
+                        </div>
+                        <div class="input-group">
+                            <label for="telefone">Telefone:</label>
+                            <input type="tel" maxlength="11" id="telefone" name="telefone" value="@cliente.Telefone">
+                        </div>
+                        <div class="input-group">
+                            <label for="cep">CEP:</label>
+                            <input maxlength="8" placeholder="Cep" type="text" name="Cep_1" id="Cep" value="@cliente.Enderecos.FirstOrDefault().Cep">
+                        </div>
+                        <div class="input-group">
+                            <label for="logradouro">Logradouro:</label>
+                            <input type="text" maxlength="150" placeholder="Logradouro" name="Logradouro_1" id="Logradouro" value="@cliente.Enderecos.FirstOrDefault().Logradouro">
+                        </div>
+                        <div class="input-group">
+                            <label for="complemento">Complemento:</label>
+                            <input type="text" maxlength="20" placeholder="Complemento" name="Complemento_1" id="Complemento" value="@cliente.Enderecos.FirstOrDefault().Complemento">
+                        </div>
+                        <div class="input-group">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" maxlength="8" placeholder="Bairro" name="Bairro_1" id="Bairro" value="@cliente.Enderecos.FirstOrDefault().Bairro">
+                        </div>
+                        <div class="input-group">
+                            <label for="localidade">Cidade:</label>
+                            <input type="text" maxlength="8" placeholder="Cidade" name="Cidade_1" id="Cidade" value="@cliente.Enderecos.FirstOrDefault().Cidade">
+                        </div>
+                        <div class="input-group">
+                            <label for="uf">UF:</label>
+                            <input type="text" maxlength="8" placeholder="UF" name="UF_1" id="UF" value="@cliente.Enderecos.FirstOrDefault().UF">
+                        </div>
+                        <input type="submit" name="btn-submit" value="Salvar" />
+                    </form>
+                }
+            }
+            
         </div>
     </div>
 </body>
 </html>
 <script>
     var form = $('#frmCliente').serialize();
+    $("#Id").attr("readonly",true);
     $(function () {
         var cadastro = @Html.Raw(Json.Encode(ViewBag.Cadastro));
 

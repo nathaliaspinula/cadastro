@@ -100,8 +100,24 @@ namespace projetoCadastros.Models
 
             var clientes = ListarClientes();
 
-            var clienteEditar = clientes.FirstOrDefault(c => c.Id == collection["ID"]);
+            var clienteEditar = clientes.FirstOrDefault(c => c.Id == collection["Id"]);
 
+            clienteEditar.Nome = collection["Nome"];
+            clienteEditar.Telefone = collection["Telefone"];
+            var ender = clienteEditar.Enderecos.ToList();
+            foreach (var item in ender)
+            {
+                for (int i = 1; !String.IsNullOrEmpty(collection["Cep_" + i]); i++)
+                {
+                    item.Bairro = collection["Bairro_" + i];
+                    item.Cep = collection["Cep_" + i];
+                    item.Cidade = collection["Cidade_" + i];
+                    item.Complemento = collection["Complemento_" + i];
+                    item.Logradouro = collection["Logradouro_" + i];
+                    item.Numero = collection["Numero_" + i];
+                    item.UF = collection["UF_" + i];
+                }
+            }
             var strObj = JsonConvert.SerializeObject(clientes);
 
             File.WriteAllText(path, strObj);
