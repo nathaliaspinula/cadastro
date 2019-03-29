@@ -1,0 +1,98 @@
+﻿@model  List<projetoCadastros.Models.Cliente>
+
+@{
+       ViewBag.Title = "Editar";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/content/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h2>Cadastrar</h2>
+        </div>
+        <div class="description">
+            <form id="frmCliente" action='/Cliente/Editar' method="POST">
+                <div class="input-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" maxlength="100" id="nome" name="nome" value="@cliente.Nome">
+                </div>
+                <div class="input-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" maxlength="11" id="telefone" name="telefone" value="@cliente.Telefone">
+                </div>
+                <div class="input-group">
+                    <label for="cep">CEP:</label>
+                    <input maxlength="8" placeholder="Cep" type="text" name="Cep_1" id="Cep" value="@cliente.Cep">
+                </div>
+                <div class="input-group">
+                    <label for="logradouro">Logradouro:</label>
+                    <input type="text" maxlength="150" placeholder="Logradouro" name="Logradouro_1" id="Logradouro" value="@cliente.Logradouro">
+                </div>
+                <div class="input-group">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" maxlength="20" placeholder="Complemento" name="Complemento_1" id="Complemento" value="@cliente.Complemento">
+                </div>
+                <div class="input-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" maxlength="8" placeholder="Bairro" name="Bairro_1" id="Bairro" value="@cliente.Bairro">
+                </div>
+                <div class="input-group">
+                    <label for="localidade">Cidade:</label>
+                    <input type="text" maxlength="8" placeholder="Cidade" name="Cidade_1" id="Cidade" value="@cliente.Cidade">
+                </div>
+                <div class="input-group">
+                    <label for="uf">UF:</label>
+                    <input type="text" maxlength="8" placeholder="UF" name="UF_1" id="UF" value="@cliente.Uf">
+                </div>
+                <input type="submit" name="btn-submit" value="Salvar" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var form = $('#frmCliente').serialize();
+    $(function () {
+        var cadastro = @Html.Raw(Json.Encode(ViewBag.Cadastro));
+
+        if (cadastro != undefined
+            && cadastro != null
+            && cadastro != ""
+            && cadastro != "ERRO") {
+            alert(cadastro);
+        }
+        $('#Cep').keyup(function () {
+            var cep = $("#Cep").val();
+            console.log(cep);
+            if (cep.length == 8) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Cliente/ConsultaCep',
+                    dataType: "json",
+                    data: { cep: cep },
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        $("#Cep").val(data.cep);
+                        $("#Logradouro").val(data.logradouro);
+                        $("#Logradouro").attr("readonly",true);
+                        $("#Bairro").val(data.bairro);
+                        $("#Bairro").attr("readonly", true);
+                        $("#Cidade").val(data.localidade);
+                        $("#Cidade").attr("readonly", true);
+                        $("#UF").val(data.uf);
+                        $("#UF").attr("readonly", true);
+                    }
+                });
+            }
+        });
+    });
+</script>
