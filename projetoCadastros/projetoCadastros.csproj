@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,6 +120,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles.css" />
+    <Content Include="Error.html" />
     <Content Include="Global.asax" />
     <Content Include="Models\Dados\dados.txt" />
     <Content Include="Web.config" />
